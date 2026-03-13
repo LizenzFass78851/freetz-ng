@@ -41,12 +41,9 @@ jobs:
         id: parse
         run: |
           IMAGES="$(find .github/docker -mindepth 1 -maxdepth 1 -type d | sed 's|.github/docker/||')"
-          echo "images<<EOF" >> $GITHUB_ENV
-          echo "$images" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//' >> $GITHUB_ENV
-          echo "EOF" >> $GITHUB_ENV
-          IMAGES="${{ env.images }}"
+          IMAGES="$(echo "$IMAGES" | sed 's/^[[:space:]]*//;s/[[:space:]]*$//')"
           IMAGES_JSON=$(echo "$IMAGES" | awk 'NF {printf "\"%s\",", $0}' | sed 's/,$//')
-          echo "img=[$IMAGES_JSON]" >> $GITHUB_OUTPUT
+          [ -n "$IMAGES_JSON" ] && echo "img=[$IMAGES_JSON]" >> $GITHUB_OUTPUT || exit 1
           echo "gitsha=${{ github.sha }}" >> $GITHUB_OUTPUT
 
       - name: vars
