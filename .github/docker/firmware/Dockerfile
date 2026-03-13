@@ -3,7 +3,7 @@ ARG BUILD_USR=freetz
 ARG BUILD_GRP=freetz
 ARG BUILD_UID=1001
 ARG BUILD_GID=1001
-
+ 
 RUN printf "deb http://old-releases.ubuntu.com/ubuntu hirsute main restricted universe multiverse\n" > /etc/apt/sources.list.d/hirsute.list \
  && printf "Package: gcc g++ cpp gcc-multilib\nPin: release n=hirsute,o=Ubuntu\nPin-Priority: 700\n\nPackage: *\nPin: release n=hirsute,o=Ubuntu\nPin-Priority: -10\n" > /etc/apt/preferences.d/hirsute
 
