@@ -25,7 +25,7 @@ jobs:
       contents: read
       pull-requests: read
     runs-on: ubuntu-latest
-    if: github.repository == 'freetz-ng/freetz-ng' || github.event_name == 'workflow_dispatch'
+#    if: github.repository == 'freetz-ng/freetz-ng' || github.event_name == 'workflow_dispatch'
 
     outputs:
       gitsha: ${{ steps.parse.outputs.gitsha }}
@@ -73,7 +73,7 @@ jobs:
       matrix:
         image: ${{ fromJson(needs.matrizifizieren.outputs.images) }}
     runs-on: ubuntu-latest
-    if: github.repository == 'freetz-ng/freetz-ng' || github.event_name == 'workflow_dispatch'
+#    if: github.repository == 'freetz-ng/freetz-ng' || github.event_name == 'workflow_dispatch'
 
     steps:
 
